@@ -3,9 +3,9 @@ import { Avatar, ListItem } from 'react-native-elements';
 
 function TourScreen(props) {
 
-    const renderTourItem = ({item: site}) => {
+    const renderTourItem = ({ item: site }) => {
         return (
-            <ListItem>
+            <ListItem onPress={() => props.onPress(site.id)}>
                 <Avatar source={site.image} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{site.name}</ListItem.Title>
