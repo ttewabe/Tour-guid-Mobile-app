@@ -1,11 +1,16 @@
 import { FlatList } from 'react-native';
 import { Avatar, ListItem } from 'react-native-elements';
+import { useState } from 'react';
+import { SITES } from '../shared/sites';
 
-function TourScreen(props) {
+
+    const TourScreen = ({ navigation }) => {
+        const [sites, setSites] = useState(SITES);
+        
 
     const renderTourItem = ({ item: site }) => {
         return (
-            <ListItem onPress={() => props.onPress(site.id)}>
+            <ListItem onPress={() => navigation.navigate('SiteInfo', {site})}>
                 <Avatar source={site.image} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{site.name}</ListItem.Title>
@@ -19,7 +24,7 @@ function TourScreen(props) {
 
     return (
         <FlatList
-            data={props.sites}
+            data={sites}
             renderItem={renderTourItem}
             keyExtractor={item => item.id.toString()}
         />

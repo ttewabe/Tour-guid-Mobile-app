@@ -1,6 +1,8 @@
 import RenderSite from '../features/sites/RenderSite'; 
 
-const siteInfoScreen = (props) => {
-    return <RenderSite site={props.site} />;
+const siteInfoScreen = ({ route }) => {
+
+const { site } = route.params;
+    return <RenderSite site={site} />;
 };
 export default siteInfoScreen;
