@@ -1,30 +1,31 @@
 import { FlatList } from 'react-native';
-import { Avatar, ListItem } from 'react-native-elements';
-import { useState } from 'react';
-import { SITES } from '../shared/sites';
+import { Tile } from 'react-native-elements';
+import { useSelector } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
 
 
     const TourScreen = ({ navigation }) => {
-        const [sites, setSites] = useState(SITES);
+        const sites = useSelector((state) => state.sites);
         
 
     const renderTourItem = ({ item: site }) => {
         return (
-            <ListItem onPress={() => navigation.navigate('SiteInfo', {site})}>
-                <Avatar source={site.image} rounded />
-                <ListItem.Content>
-                    <ListItem.Title>{site.name}</ListItem.Title>
-                    <ListItem.Subtitle>
-                        {site.description}
-                    </ListItem.Subtitle>
-                </ListItem.Content>
-            </ListItem>
+            <Tile
+                title={site.name}
+                caption={site.description}
+                featured
+                onPress={() =>
+                    navigation.navigate('SiteInfo', { site })
+                    
+                }
+                imageSrc={{ uri: baseUrl + site.image }}
+            />
         );
     };
 
     return (
         <FlatList
-            data={sites}
+            data={sites.sitesArray}
             renderItem={renderTourItem}
             keyExtractor={item => item.id.toString()}
         />
