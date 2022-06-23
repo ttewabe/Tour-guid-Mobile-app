@@ -7,7 +7,7 @@ const RenderSite = (props ) => {
         if (site){
             return(
                 <Card containerStyle={styles.cardContainer}>
-                    <Card.Image source={{ uri: baseUrl + campsite.image }}>
+                    <Card.Image source={{ uri: baseUrl + site.image }}>
                         <View style={{ justifyContent: 'center', flex: 1 }}>
                             <Text 
                                 style={{ 

@@ -1,13 +1,14 @@
 import RenderSite from '../features/sites/RenderSite'; 
-import { useState } from 'react';
 import { FlatList, StyleSheet, Text, View} from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../features/favorites/favoritesSlice';
 
 
 const siteInfoScreen = ({ route }) => {
     const {site} =route.params;
     const comments = useSelector((state) => state.comments);
-    const [favorite, setFavorite] = useState(false);
+    const favorites = useSelector((state) => state.favorites);
+    const dispatch = useDispatch ();
 
     const renderCommentItem = ({ item })=>{
         return (
@@ -17,13 +18,12 @@ const siteInfoScreen = ({ route }) => {
                 <Text style={{ fontSize: 12}}>
                     {`--${item.author}, ${item.date}`}</Text>
             </View>
-
         )
     }
 
     return(
         <FlatList
-            data={comments.filter(
+            data={comments.commentsArray.filter(
                 (comment) => comment.siteId === site.id
             )}
             renderItem={renderCommentItem}
@@ -34,12 +34,12 @@ const siteInfoScreen = ({ route }) => {
             }}
                 ListHeaderComponent={
                 <>
-                <RenderSite 
-                    site={site}
-                    isFavorite={favorite}
-                    markFavorite={() => setFavorite(true)}
-                    />
-                <Text style={styles.commentsTitle}>Comments</Text>
+                    <RenderSite 
+                        site={site}
+                        isFavorite={favorites.includes(site.id)}
+                        markFavorite={() => dispatch(toggleFavorite(site.id))}
+                        />
+                    <Text style={styles.commentsTitle}>Comments</Text>
                 </>
         }
         />

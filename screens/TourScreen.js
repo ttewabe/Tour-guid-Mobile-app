@@ -2,12 +2,23 @@ import { FlatList } from 'react-native';
 import { Tile } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import Loading from '../components/LoadingComponent';
 
 
     const TourScreen = ({ navigation }) => {
         const sites = useSelector((state) => state.sites);
-        
 
+        if (sites.isLoading) {
+            return <Loading />;
+        }
+        if (sites.errMess) {
+            return (
+                <View>
+                    <Text>{ites.errMess}</Text>
+                </View>
+            );
+        }
+        
     const renderTourItem = ({ item: site }) => {
         return (
             <Tile
