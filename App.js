@@ -5,10 +5,11 @@ import { store } from './redux/store';
 
 export default function App() {
     return(
-        <NavigationContainer>
+        
             <Provider store={store}>
-                <Main />
+                <NavigationContainer>
+                    <Main />
+                </NavigationContainer>
             </Provider>
-        </NavigationContainer>
     )
 }

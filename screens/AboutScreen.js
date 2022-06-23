@@ -23,7 +23,7 @@ const AboutScreen = () => {
         <ScrollView>
             <Mission />
             <Card>
-                <Card.Title>Our Tour Sites</Card.Title>
+                <Card.Title>Our Tour Guid Partners</Card.Title>
                 <Card.Divider />
                 {partners.map((partner) =>(
                     <ListItem key={partner.id}>
