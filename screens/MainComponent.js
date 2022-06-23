@@ -1,18 +1,20 @@
-import { StyleSheet, Platform, View } from 'react-native';
+import { StyleSheet,Text,Image, Platform, View } from 'react-native';
 import {Icon} from 'react-native-elements';
 import Constants from 'expo-constants';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
 import SiteInfoScreen from './SiteInfoScreen';
 import TourScreen from './TourScreen';
 import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
+import logo from '../assets/images/logo.png';
+
 
 const Drawer = createDrawerNavigator();
     const screenOptions = {
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#5637DD' }
+        headerStyle: { backgroundColor: '#5137DD' }
     }
 
 const HomeNavigator = () => {
@@ -116,12 +118,28 @@ const TourNavigator = () => {
         )
     }
 
+    const CustomDrawerContent = (props) => (
+        
+            <DrawerContentScrollView {...props}>
+            <View style={styles.drawerHeader}>
+                <View style={{ flex: 1 }}>
+                    <Image source={logo} style={styles.drawerImage} />
+                </View>
+                <View style={{ flex: 2 }}>
+                    <Text style={styles.drawerHeaderText}>My Tour </Text>
+                </View>
+            </View>
+            <DrawerItemList {...props} labelStyle={{ fontWeight: 'bold' }} />
+            </DrawerContentScrollView>
+    );
+
 const Main = () => {
 
     return (
         <View style={{ flex: 1, paddingTop:Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
             <Drawer.Navigator
                 initialRouteName='Home'
+                drawerContent={CustomDrawerContent}
                 drawerStyle={{ backgroundColor: '#CEC8FF' }}>
                 <Drawer.Screen
                     name='Home'
@@ -133,7 +151,7 @@ const Main = () => {
                                 name='home'
                                 type='font-awesome'
                                 size={24}
-                                iconStyle={{ width: 10 }}
+                                iconStyle={{ width: 24 }}
                                 color={color}
                             />
                         )
@@ -149,7 +167,7 @@ const Main = () => {
                                 name='list'
                                 type='font-awesome'
                                 size={24}
-                                iconStyle={{ width: 10 }}
+                                iconStyle={{ width: 24}}
                                 color={color}
                             />
                         )
@@ -165,7 +183,7 @@ const Main = () => {
                                 name='info-circle'
                                 type='font-awesome'
                                 size={24}
-                                iconStyle={{ width: 10 }}
+                                iconStyle={{ width: 24 }}
                                 color={color}
                             />
                         )
@@ -181,7 +199,7 @@ const Main = () => {
                                 name='address-card'
                                 type='font-awesome'
                                 size={24}
-                                iconStyle={{ width: 10 }}
+                                iconStyle={{ width: 24 }}
                                 color={color}
                             />
                         )
@@ -192,6 +210,24 @@ const Main = () => {
     );
 };
 const styles = StyleSheet.create({
+    drawerHeader: {
+        backgroundColor: '#004',
+        height: 140,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row'
+    },
+    drawerHeaderText: {
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    drawerImage: {
+        margin: 10,
+        height: 60,
+        width: 60
+    },
     stackIcon: {
         marginLeft: 10,
         color: '#fff',
