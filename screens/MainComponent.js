@@ -8,6 +8,7 @@ import SiteInfoScreen from './SiteInfoScreen';
 import TourScreen from './TourScreen';
 import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
+import ReservationScreen from './ReservationScreen';
 import logo from '../assets/images/logo.png';
 
 import { useDispatch } from 'react-redux';
@@ -16,6 +17,7 @@ import { fetchPartners } from '../features/partners/partnersSlice';
 import { fetchSites } from '../features/sites/sitesSlice';
 import { fetchPromotions } from '../features/promotions/promotionsSlice';
 import { fetchComments } from '../features/comments/commentsSlice';
+
 
 
 
@@ -91,6 +93,31 @@ const ContactNavigator = () => {
         </Stack.Navigator>
     )
 }
+
+const ReservationNavigator = () => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen
+                name='Reservation'
+                component={ReservationScreen}
+                options={({ navigation }) => ({
+                    title: 'Reservation Search',
+                    headerLeft: () => (
+                        <Icon
+                            name='tree'
+                            type='font-awesome'
+                            iconStyle={styles.stackIcon}
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    )
+                })}
+            />
+        </Stack.Navigator>
+    );
+};
+
+
 const TourNavigator = () => {
     const Stack = createStackNavigator();
         return(
@@ -180,6 +207,22 @@ const Main = () => {
                                 type='font-awesome'
                                 size={24}
                                 iconStyle={{ width: 24}}
+                                color={color}
+                            />
+                        )
+                    }}
+                />
+                <Drawer.Screen
+                    name='ReserveCampsite'
+                    component={ReservationNavigator}
+                    options={{
+                        title: 'Reserve Site',
+                        drawerIcon: ({ color }) => (
+                            <Icon
+                                name='tree'
+                                type='font-awesome'
+                                size={24}
+                                iconStyle={{ width: 24 }}
                                 color={color}
                             />
                         )
