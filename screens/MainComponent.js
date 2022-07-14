@@ -24,7 +24,7 @@ import { fetchComments } from '../features/comments/commentsSlice';
 const Drawer = createDrawerNavigator();
     const screenOptions = {
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#5137DD' }
+        headerStyle: { backgroundColor: '#142433'},        
     }
 
 const HomeNavigator = () => {
@@ -266,7 +266,8 @@ const Main = () => {
 };
 const styles = StyleSheet.create({
     drawerHeader: {
-        backgroundColor: '#004',
+        marginTop: -3,
+        backgroundColor: '#142433',
         height: 140,
         alignItems: 'center',
         justifyContent: 'center',
@@ -275,7 +276,7 @@ const styles = StyleSheet.create({
     },
     drawerHeaderText: {
         color: '#fff',
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold'
     },
     drawerImage: {

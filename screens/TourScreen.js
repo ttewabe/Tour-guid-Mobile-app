@@ -14,7 +14,7 @@ import Loading from '../components/LoadingComponent';
         if (sites.errMess) {
             return (
                 <View>
-                    <Text>{ites.errMess}</Text>
+                    <Text>{sites.errMess}</Text>
                 </View>
             );
         }
