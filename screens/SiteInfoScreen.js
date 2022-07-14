@@ -5,6 +5,7 @@ import { Input, Rating} from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../features/favorites/favoritesSlice';
 import { postComment } from '../features/comments/commentsSlice';
+import * as Animatable from 'react-native-animatable'
 
 
 const siteInfoScreen = ({ route }) => {
@@ -49,7 +50,11 @@ const siteInfoScreen = ({ route }) => {
     };
 
     return(
-        <>
+        <Animatable.View
+            animation='fadeInUp'
+            duration={2000}
+            delay={1000}
+        >
             <FlatList
                 data={comments.commentsArray.filter(
                     (comment) => comment.siteId === site.id
@@ -128,7 +133,7 @@ const siteInfoScreen = ({ route }) => {
                         </View>
                     </View>
                 </Modal>
-            </>
+            </Animatable.View>
         )
 };
 

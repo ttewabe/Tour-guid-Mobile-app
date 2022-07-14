@@ -3,6 +3,7 @@ import { Tile } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
+import * as Animatable from 'react-native-animatable'
 
 
     const TourScreen = ({ navigation }) => {
@@ -21,6 +22,10 @@ import Loading from '../components/LoadingComponent';
         
     const renderTourItem = ({ item: site }) => {
         return (
+            <Animatable.View
+                animation='fadeInRightBig'
+                duration={2000}
+            >
             <Tile
                 title={site.name}
                 caption={site.description}
@@ -31,6 +36,7 @@ import Loading from '../components/LoadingComponent';
                 }
                 imageSrc={{ uri: baseUrl + site.image }}
             />
+            </Animatable.View>
         );
     };
 
