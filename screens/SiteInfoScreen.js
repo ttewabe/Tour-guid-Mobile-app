@@ -119,7 +119,7 @@ const siteInfoScreen = ({ route }) => {
                         <View style={{ margin: 10 }}>
                             <Button
                                 onPress={() => {
-                                    setModal(!showModal);
+                                    setShowModal(!showModal);
                                     resetForm();
                                 }}
                                 color="#808080"
